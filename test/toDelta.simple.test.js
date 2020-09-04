@@ -1,4 +1,4 @@
-const toDelta = require('./toDelta')
+const toDelta = require('../src/toDelta')
 
 test('converts text with emphasis', () => {
   const input = 'Hello *world*'

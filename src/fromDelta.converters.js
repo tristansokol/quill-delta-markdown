@@ -3,28 +3,28 @@ const { encodeLink } = require('./utils/URL')
 
 module.exports = {
   embed: {
-    image: function(src) {
+    image: function (src) {
       this.append('![](' + encodeLink(src) + ')')
     },
   },
 
   inline: {
-    italic: function() {
+    italic: function () {
       return ['*', '*']
     },
-    bold: function() {
+    bold: function () {
       return ['**', '**']
     },
-    code: function() {
+    code: function () {
       return ['`', '`']
     },
-    underline: function() {
+    underline: function () {
       return ['__', '__']
     },
-    strikethrough: function() {
+    strikethrough: function () {
       return ['~~', '~~']
     },
-    entity: function(attributes) {
+    entity: function (attributes) {
       switch (attributes.type) {
         case 'LINK':
           return [`[`, `](${attributes.data.url})`]
@@ -35,46 +35,52 @@ module.exports = {
   },
 
   block: {
-    'header-one': function() {
+    header: {
+      1: function (a, b, c) {
+        console.log(a, b, c)
+        this.open = '# ' + this.open
+      },
+    },
+    'header-one': function () {
       this.open = '# ' + this.open
     },
-    'header-two': function() {
+    'header-two': function () {
       this.open = '## ' + this.open
     },
-    blockquote: function() {
+    blockquote: function () {
       this.open = '> ' + this.open
     },
-    'code-block': function() {
+    'code-block': function () {
       this.open = '```\n' + this.open
       this.close = this.close + '```\n'
     },
-    'todo-block': function({ data }) {
+    'todo-block': function ({ data }) {
       this.open = (data.checked ? '- [x] ' : '- [ ] ') + this.open
     },
     'unordered-list-item': {
-      group: function() {
+      group: function () {
         return new Node(['', '\n'])
       },
-      line: function(attrs) {
+      line: function (attrs) {
         const indent = attrs.data && attrs.data.depth ? '  '.repeat(attrs.data.depth) : ''
         this.open = indent + '- ' + this.open
       },
     },
     'ordered-list-item': {
-      group: function() {
+      group: function () {
         return new Node(['', '\n'])
       },
-      line: function(attrs, group) {
+      line: function (attrs, group) {
         const indent = attrs.data && attrs.data.depth ? '  '.repeat(attrs.data.depth) : ''
         group.count = group.count || 0
         var count = ++group.count
         this.open = indent + count + '. ' + this.open
       },
     },
-    separator: function() {
+    separator: function () {
       this.open = '\n---\n' + this.open
     },
-    image: function({ data }) {
+    image: function ({ data }) {
       this.open = `![](${encodeLink(data.url)})`
     },
   },

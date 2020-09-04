@@ -1,4 +1,4 @@
-const render = require('./fromDelta')
+const render = require('../src/fromDelta')
 
 test('renders inline format', function() {
   expect(

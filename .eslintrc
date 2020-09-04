@@ -3,6 +3,10 @@
     "jest": true,
     "node": true
   },
+  "parserOptions": {
+    // Only ESLint 6.2.0 and later support ES2020.
+    "ecmaVersion": 2020
+},
   "plugins": ["node"],
   "extends": ["eslint:recommended", "plugin:node/recommended"]
 }

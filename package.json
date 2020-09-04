@@ -1,9 +1,7 @@
 {
-  "_inCache": true,
-  "_installable": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/disyakidneyshot/quill-delta-markdown"
+    "url": "https://github.com/tristansokol/quill-delta-markdown"
   },
   "dependencies": {
     "commonmark": "^0.26.0",
@@ -12,8 +10,8 @@
   },
   "description": "To and from Markdown and Quill delta",
   "devDependencies": {
-    "eslint": "3.8.1",
-    "eslint-plugin-node": "2.1.3",
+    "eslint": "^7.8.1",
+    "eslint-plugin-node": "^11.1.0",
     "jest": "^21.0.1",
     "prettier": "^1.5.2"
   },
@@ -32,7 +30,7 @@
   "scripts": {
     "pretty": "find ./**/*.js | xargs prettier --write --no-semi --print-width 80 --single-quote --trailing-comma es5",
     "test": "jest",
-    "test:watch": "mocha \"tests/**/*.spec.js\" --reporter progress --watch"
+    "test:watch": "jest --watch"
   },
   "version": "0.0.1"
 }
